@@ -1,4 +1,4 @@
-import {Entity, hasMany, model, property} from '@loopback/repository';
+import {Entity, model, property} from '@loopback/repository';
 
 @model()
 export class User extends Entity {
@@ -7,11 +7,12 @@ export class User extends Entity {
     id: true,
     generated: true,
   })
-  id?: number;
+  id: number;
 
   @property({
     type: 'string',
     required: true,
+    index: {unique: true},
   })
   username: string;
 
@@ -24,6 +25,7 @@ export class User extends Entity {
   @property({
     type: 'string',
     required: true,
+    index: {unique: true},
   })
   email: string;
 
