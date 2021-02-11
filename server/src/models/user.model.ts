@@ -1,4 +1,3 @@
-import {Todo} from './todo.model';
 import {Entity, hasMany, model, property} from '@loopback/repository';
 
 @model()
@@ -27,9 +26,6 @@ export class User extends Entity {
     required: true,
   })
   email: string;
-
-  @hasMany(() => Todo)
-  todos?: Todo[];
 
   constructor(data?: Partial<User>) {
     super(data);
