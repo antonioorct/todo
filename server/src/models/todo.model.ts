@@ -28,7 +28,7 @@ export class Todo extends Entity {
 
   @property({
     type: 'boolean',
-    required: true,
+    default: false,
   })
   completed: boolean;
 
@@ -40,7 +40,6 @@ export class Todo extends Entity {
 
   @property({
     type: 'date',
-    required: true,
     default: () => new Date(),
   })
   createdAt: Date;
