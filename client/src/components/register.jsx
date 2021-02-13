@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import http from "../services/httpService";
 import { sendRegisterInfo } from "../services/authService";
+import { Link } from "react-router-dom";
 
 const schema = yup.object().shape({
   username: yup.string().required().min(4).label("username"),
@@ -46,45 +46,71 @@ export default function Login() {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <input
-          type="text"
-          name="username"
-          ref={register}
-          autoFocus
-          autoComplete="off"
-        />
-        <p className="validationError">{errors.username?.message}</p>
+    <div className="container">
+      <div className="row">
+        <form
+          className="offset-3 col-6 form-group"
+          onSubmit={handleSubmit(onSubmit)}
+        >
+          <label htmlFor="username">Username</label>
+          <input
+            className="form-control"
+            type="text"
+            id="username"
+            name="username"
+            ref={register}
+            autoFocus
+            autoComplete="off"
+          />
+          <p className="validation-error">{errors.username?.message}</p>
 
-        <input type="email" name="email" ref={register} autoComplete="off" />
-        <p className="validationError">{errors.email?.message}</p>
+          <label htmlFor="email">E-mail</label>
+          <input
+            className="form-control"
+            type="email"
+            id="email"
+            name="email"
+            ref={register}
+            autoComplete="off"
+          />
+          <p className="validation-error">{errors.email?.message}</p>
 
-        <input
-          type="password"
-          name="password"
-          ref={register}
-          autoComplete="off"
-        />
-        <p className="validationError">{errors.password?.message}</p>
+          <label htmlFor="password">Password</label>
+          <input
+            className="form-control"
+            type="password"
+            id="password"
+            name="password"
+            ref={register}
+            autoComplete="off"
+          />
+          <p className="validation-error">{errors.password?.message}</p>
 
-        <input
-          type="password"
-          name="repeatPassword"
-          ref={register}
-          autoComplete="off"
-        />
-        <p className="validationError">{errors.repeatPassword?.message}</p>
+          <label htmlFor="repeatPassword">Repeat password</label>
+          <input
+            className="form-control"
+            type="password"
+            id="repeatPassword"
+            name="repeatPassword"
+            ref={register}
+            autoComplete="off"
+          />
+          <p className="validation-error">{errors.repeatPassword?.message}</p>
 
-        <p className="validationError" style={{ color: error?.color }}>
-          {error?.message}
-        </p>
-        <button type="submit">Register</button>
-      </form>
+          <p className="validation-error" style={{ color: error?.color }}>
+            {error?.message}
+          </p>
+          <button className="btn btn-success" type="submit">
+            Register
+          </button>
 
-      <a href="/login">
-        <button>Back to login</button>
-      </a>
+          <Link to="/login">
+            <button className="btn btn-primary float-right" type="submit">
+              Back to login
+            </button>
+          </Link>
+        </form>
+      </div>
     </div>
   );
 }

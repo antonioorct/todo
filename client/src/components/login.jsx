@@ -36,32 +36,52 @@ export default function Login() {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <input type="text" name="username" ref={register} autoFocus />
-        <br />
-        <span className="validationError">{errors.username?.message}</span>
-        <br />
+    <div className="container">
+      <div className="row">
+        <form
+          className="offset-3 col-6 form-group"
+          onSubmit={handleSubmit(onSubmit)}
+        >
+          <h2 className="text-center">Login</h2>
+          <label htmlFor="username">Username</label>
+          <input
+            className="form-control"
+            type="text"
+            id="username"
+            name="username"
+            ref={register}
+            autoFocus
+          />
+          <br />
+          <span className="validation-error">{errors.username?.message}</span>
+          <br />
 
-        <input
-          type="password"
-          name="password"
-          ref={register}
-          autoComplete="on"
-        />
-        <br />
-        <span className="validationError">{errors.password?.message}</span>
+          <label htmlFor="password">Password</label>
+          <input
+            className="form-control"
+            type="password"
+            id="password"
+            name="password"
+            ref={register}
+            autoComplete="on"
+          />
+          <br />
+          <span className="validation-error">{errors.password?.message}</span>
 
-        <p className="validationError" style={{ color: error?.color }}>
-          {error?.message}
-        </p>
+          <p className="validation-error" style={{ color: error?.color }}>
+            {error?.message}
+          </p>
 
-        <button type="submit">Login</button>
-      </form>
-
-      <Link to="/register">
-        <button>Register</button>
-      </Link>
+          <button className="btn btn-success" type="submit">
+            Login
+          </button>
+          <Link to="/register">
+            <button type="button" className="btn btn-primary float-right">
+              Register
+            </button>
+          </Link>
+        </form>
+      </div>
     </div>
   );
 }

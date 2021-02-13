@@ -1,5 +1,6 @@
+import "../App.css";
 import React, { useState, useEffect } from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch } from "react-router-dom";
 import TodoList from "./todoList";
 import Login from "./login";
 import Register from "./register";
