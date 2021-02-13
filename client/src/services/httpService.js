@@ -6,7 +6,7 @@ axios.interceptors.request.use(
     const jwt = getJwtFromLocal();
 
     if (jwt) conf.headers = { ...conf.headers, Authorization: "Bearer " + jwt };
-    conf.url = `http://${window.location.hostname}:3001/api${conf.url}`;
+    conf.url = `http://${window.location.hostname}:3000/api${conf.url}`;
 
     return conf;
   },

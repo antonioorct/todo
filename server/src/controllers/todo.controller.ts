@@ -67,13 +67,17 @@ export class TodoController {
       'application/json': {
         schema: {
           type: 'array',
-          items: getModelSchemaRef(Todo, {includeRelations: true}),
+          items: getModelSchemaRef(Todo, {
+            includeRelations: true,
+          }),
         },
       },
     },
   })
   async find(@param.filter(Todo) filter?: Filter<Todo>): Promise<Todo[]> {
-    return this.todoRepository.find(filter);
+    return this.todoRepository.find({
+      include: [{relation: 'user', scope: {fields: ['id', 'username']}}],
+    });
   }
 
   @authenticate('jwt')
