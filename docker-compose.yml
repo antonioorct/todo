@@ -9,12 +9,13 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: p433w0rd
       MYSQL_DATABASE: todo
-    restart: always
+    restart: on-failure
   todo-migrate:
     build: server/.
     container_name: todo-migrate
     environment:
       DB_CONNECTION_STRING: mysql://root:p433w0rd@todo-db:3306/todo
+    restart: on-failure
     links:
       - todo-db
     command: npm run migrate
@@ -27,6 +28,7 @@ services:
       DB_CONNECTION_STRING: mysql://root:p433w0rd@todo-db:3306/todo
       PORT: 3000
       HOST: 0.0.0.0
+    restart: on-failure
     links:
       - todo-db
   todo-client:
