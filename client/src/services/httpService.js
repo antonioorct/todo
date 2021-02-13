@@ -1,14 +1,12 @@
 import axios from "axios";
 import { getJwtFromLocal } from "./storageService";
 
-const baseApiUrl = process.env.REACT_APP_BASE_API_URL;
-
 axios.interceptors.request.use(
   (conf) => {
     const jwt = getJwtFromLocal();
 
     if (jwt) conf.headers = { ...conf.headers, Authorization: "Bearer " + jwt };
-    conf.url = baseApiUrl + conf.url;
+    conf.url = `http://${window.location.hostname}:3001/api${conf.url}`;
 
     return conf;
   },

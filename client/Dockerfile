@@ -8,8 +8,6 @@ RUN npm install
 
 COPY . .
 
-ENV REACT_APP_BASE_API_URL="http://localhost:3000/api"
-
 RUN npm run build
 
 
