@@ -1,0 +1,38 @@
+version: "3.7"
+
+services:
+  todo-db:
+    image: mysql:5.7
+    container_name: todo-db
+    ports:
+      - 3307:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: p433w0rd
+      MYSQL_DATABASE: todo
+    restart: always
+  todo-migrate:
+    build: server/.
+    container_name: todo-migrate
+    environment:
+      DB_CONNECTION_STRING: mysql://root:p433w0rd@todo-db:3306/todo
+    links:
+      - todo-db
+    command: npm run migrate
+  todo-server:
+    build: server/.
+    container_name: todo-server
+    ports:
+      - 3000:3000
+    environment:
+      DB_CONNECTION_STRING: mysql://root:p433w0rd@todo-db:3306/todo
+      PORT: 3000
+      HOST: 0.0.0.0
+    links:
+      - todo-db
+  todo-client:
+    build: client/.
+    container_name: todo-client
+    ports:
+      - 80:80
+    links:
+      - todo-server

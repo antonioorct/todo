@@ -1,8 +1,15 @@
 .vscode
 
 client/node_modules
+client/build
 
 server/node_modules
+server/distserver/node_modules
 server/dist
-server/.vscode
-server/tsconfig.tsbuildinfo
+server/*.tsbuildinfo
+server/.eslintignore
+server/.eslintrc.js
+server/.npmrc
+server/.prettierignore
+server/.prettierrc
+server/.yo-rc.json

@@ -4,7 +4,7 @@ import {juggler} from '@loopback/repository';
 const config = {
   name: 'db',
   connector: 'mysql',
-  url: process.env.MYSQL_CONNECTION_STRING,
+  url: process.env.DB_CONNECTION_STRING,
 };
 
 // Observe application's life cycle to disconnect the datasource when

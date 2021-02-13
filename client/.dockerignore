@@ -1,0 +1,6 @@
+build
+npm-debug.log
+.vscode
+docker-compose*
+README.md
+node_modules
