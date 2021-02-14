@@ -18,6 +18,8 @@ services:
     restart: on-failure
     links:
       - todo-db
+    # Add -- --rebuild at the end of next line if you changed something
+    # major in a model file
     command: npm run migrate
   todo-server:
     build: server/.
@@ -27,6 +29,7 @@ services:
     environment:
       DB_CONNECTION_STRING: mysql://root:p433w0rd@todo-db:3306/todo
       PORT: 3000
+      # Do NOT change the HOST line
       HOST: 0.0.0.0
     restart: on-failure
     links:
