@@ -10,6 +10,7 @@ import {User} from './user.model';
         entity: 'User',
         entityKey: 'id',
         foreignKey: 'userId',
+	onDelete: 'cascade',
       },
     },
   },
