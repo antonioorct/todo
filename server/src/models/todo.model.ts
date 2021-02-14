@@ -1,3 +1,4 @@
+import {v4 as uuid} from 'uuid';
 import {Entity, model, property, belongsTo} from '@loopback/repository';
 import {User} from './user.model';
 
@@ -15,11 +16,11 @@ import {User} from './user.model';
 })
 export class Todo extends Entity {
   @property({
-    type: 'number',
+    type: 'string',
     id: true,
-    generated: true,
+    default: () => uuid(),
   })
-  id?: number;
+  id?: string;
 
   @property({
     type: 'string',
@@ -39,7 +40,7 @@ export class Todo extends Entity {
   createdAt: Date;
 
   @belongsTo(() => User)
-  userId: number;
+  userId: string;
 
   constructor(data?: Partial<Todo>) {
     super(data);

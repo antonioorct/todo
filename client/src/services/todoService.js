@@ -19,7 +19,7 @@ const getAllTodosFromUser = async (userId) => {
 const newTodo = async (description, userId) => {
   const { data } = await http.post("/todos", {
     description,
-    userId: parseInt(userId),
+    userId: userId,
   });
 
   return data;

@@ -1,14 +1,15 @@
+import {v4 as uuid} from 'uuid';
 import {Entity, model, property, hasMany} from '@loopback/repository';
 import {Todo} from './todo.model';
 
 @model()
 export class User extends Entity {
   @property({
-    type: 'number',
+    type: 'string',
     id: true,
-    generated: true,
+    default: () => uuid(),
   })
-  id: number;
+  id: string;
 
   @property({
     type: 'string',

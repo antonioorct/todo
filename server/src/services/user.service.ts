@@ -40,7 +40,7 @@ export class CustomUserService {
 
   convertToUserProfile(user: User): UserProfile {
     return {
-      [securityId]: user.id.toString(),
+      [securityId]: user.id,
       name: user.username,
       id: user.id,
       email: user.email,
