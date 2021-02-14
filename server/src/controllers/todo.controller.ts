@@ -136,4 +136,26 @@ export class TodoController {
   async deleteById(@param.path.number('id') id: number): Promise<void> {
     await this.todoRepository.deleteById(id);
   }
+
+  @authenticate('jwt')
+  @get('/users/{id}/todos')
+  @response(200, {
+    description: 'Array of Todo model instances from user',
+    content: {
+      'application/json': {
+        schema: {
+          type: 'array',
+          items: getModelSchemaRef(Todo, {
+            includeRelations: true,
+          }),
+        },
+      },
+    },
+  })
+  async findTodosByUserId(
+    @param.path.number('id') id: number,
+    @param.filter(Todo) filter?: Filter<Todo>,
+  ): Promise<Todo[]> {
+    return this.todoRepository.find({...filter, where: {userId: id}});
+  }
 }

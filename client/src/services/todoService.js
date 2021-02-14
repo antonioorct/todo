@@ -8,6 +8,14 @@ const getAllTodos = async () => {
   return data;
 };
 
+const getAllTodosFromUser = async (userId) => {
+  const { data } = await http.get(`/users/${userId}/todos`);
+
+  data.reverse();
+
+  return data;
+};
+
 const newTodo = async (description, userId) => {
   const { data } = await http.post("/todos", {
     description,
@@ -27,4 +35,4 @@ const deleteTodo = async (todoId) => {
   http.delete("/todos/" + todoId);
 };
 
-export { getAllTodos, newTodo, deleteTodo, editTodo };
+export { getAllTodos, getAllTodosFromUser, newTodo, deleteTodo, editTodo };

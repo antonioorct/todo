@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
 import {
-  getAllTodos,
   newTodo,
   deleteTodo,
   editTodo,
+  getAllTodosFromUser,
 } from "../services/todoService";
 import { UserContext, initialState } from "../services/userContext";
 import { logout } from "../services/authService";
@@ -22,7 +22,7 @@ export default function TodoList() {
   }, []);
 
   const populateTodoList = async () => {
-    const todos = await getAllTodos();
+    const todos = await getAllTodosFromUser(user.id);
 
     setTodos(todos);
   };
@@ -32,7 +32,6 @@ export default function TodoList() {
     if (newTodoForm === "") return;
 
     const returnedTodo = await newTodo(newTodoForm, user.id);
-    returnedTodo.user = { username: user.name };
 
     setTodos([returnedTodo, ...todos]);
     setNewTodoForm("");
@@ -220,14 +219,7 @@ export default function TodoList() {
 
                   <hr />
 
-                  <span>
-                    <span className="float-left">
-                      Created by {todo.user.username}
-                    </span>
-                    <span className="float-right">
-                      {new Date(todo.createdAt).toLocaleString()}
-                    </span>
-                  </span>
+                  <span>{new Date(todo.createdAt).toLocaleString()}</span>
                 </li>
               ))}
           </ul>
